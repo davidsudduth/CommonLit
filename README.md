@@ -4,6 +4,17 @@
 
 *Mission: to develop informed and engaged citizens by improving students' reading, writing and speaking skills*
 
+## About
+
+CommonLit delivers high-quality, free instructional materials to support literacy development for students in grades 5-12. Our resources are:
+  * Flexible;
+  * Research-Based;
+  * Aligned to the Common Core State Standards;
+  * Created by teachers, for teachers.
+
+We believe in the transformative power of a great text, and a great question. That’s why we are committed to keeping CommonLit completely free, forever.
+
+
 ## Predicting Student Success Through Advanced Machine Learning
 
 ### Goals & Objectives
@@ -12,64 +23,67 @@
 
   *--How can we predict what improves a students ability to read and write using the CommonLit methodology and resources--*
 
-* **Data preprocessing**
+* **Data cleaning and preprocessing** - Munge the data
 
-* **Feature Engineering**
+* **Feature Engineering** - Search for predictors
 
-* **Build a Model** that is **efficient** and **effective** at predicting **student success**
-  * Apply machine learning methodologies and advanced statistical analytics to provide insights to the data.  
+* **Build a Model** that is **interpretable** and can effectively predict **student success**
 
+* Apply **machine learning** methodologies and advanced **statistical analytics** to provide insights to the data.  
 
-* Provide **clear recommendations** in the report for **action items** management can implement
+* Provide **clear recommendations** for **action items** management can implement
+
+* Create **professional data visualizations** for management report
 
 ![screenshot](https://d1e2bohyu2u2w9.cloudfront.net/education/sites/default/files/website_review_-_commonlit.png)
 
   ### Defining the problem:  What is "student success"?
 
-  * How do we measure it?
+  * ##### How do we measure it?
 
-  * What factors influence it?
+  * ##### What factors influence it?
 
-  * How can we influence it?
+  * ##### How can we influence it?
 
-  Success in the context of CommonLit's mission is the improvement of a given students reading and writing ability measured by their assignment score improvement over time.
+  *Success in the context of CommonLit's mission is the improvement of a given students reading and writing ability measured by their assignment score improvement over time.*
 
-  We want to
+  In addition to performing feature engineering on student assessment scores, I also
 
-  any instance of user activity using company infrastructure that results in a liability to the company.  For example, this could include fake tickets that are sold on the company website, fake events that the company hosts, unauthorized user activity of other people's accounts, and falsified credit card and checking account information used to successfully purchase event tickets.
-
-  Our analysis focused on all the information *"acct_type"* labeled as fraud in any way.  This included *"fraudster_event"*, *"fraudster"*, and *"fraudster_att"*.  With these assumptions and classifications, we can then focus on building the most effective tool.
-
-  <center>*Initial Dataset => Fraud: 1293 Not Fraud: 13044*</center>
-
-![screenshot](https://datonauts.com/wp-content/uploads/2016/10/Statistics-Word-Cloud.png)
-
-  ### Part 1 - Scoping the problem: Preprocessing and building an appropriate Feature Matrix
-
-  We started by performing a column-by-column analysis on the data looking for easy to incorporate features for our MVP.  We wanted to tackle this in steps to ensure we could get an MVP as quickly as possible.
-
-* **Initial Features** We identified columns with null values and missing or incorrect data.  We looked at histograms and a scatter matrix to get an idea of the data's distribution keeping an eye out for possible relationships.
-
-  Initial Features for MVP: *body_length, fb_published, has_analytics, has_logo, name_length, user_age*
-
-* **Columns requiring minimal preprocessing - one hot encoding, scaling:** These features were tagged to work on next as they required little additional work in order to be incorporated into the models.
-
-  Minimal Preprocessing: *channels, currency, delivery_method, venue_country/country, listed, user_type, gts, payout_type*
-
-* **Columns requiring NLP processing** We wanted to keep these features for further investigation at a later date.  While there may be opportunities to discover additional insights form these features, it would require
-
-  NLP Features: *name, description, org_desc, org_name, payee_name, venue_address*
-
-* **Columns requiring extensive further investigation (out of scope)** We wanted to keep these features for further investigation at a later date.  While there may be opportunities to discover additional insights form these features, it would require
-
-  Out-of-Scope Features: *approx_payout_date, fb_published, has_analytics, ticket_types, venue_address, venue_country*
-
-* **Drop Columns** Finally, we designated certain columns too sparse, irrelevant for consideration, or having too much missing or corrupt data.  We eliminated these from the analysis for the time being.
-
-  Drop Features: *event_created, event_end, event_published, user_created, venue_latitude, venue_longitude, venue_name, venue_state, has_header, previous_payouts, org_twitter*
+  The analysis focused...
 
 
-  ### Part 2 - Building the Model
+  <center></center>
+
+![screenshot](https://www.ohio.edu/zanesville/images/WORDL2_full.jpg)
+
+  ### Part 1 - Scoping the problem: Data munging and data preprocessing
+
+  I started by performing a column-by-column analysis on the data looking for easy to incorporate features for an MVP.  I wanted to tackle this in steps to ensure I could could get working prototype as quickly as possible.
+
+
+
+  ### Part 2 - Feature Engineering and building the Feature Matrix
+
+  * **Initial Features** We identified columns with null values and missing or incorrect data.  We looked at histograms and a scatter matrix to get an idea of the data's distribution keeping an eye out for possible relationships.
+
+    Initial Features for MVP: *?*
+
+  * **Columns requiring minimal preprocessing - one hot encoding, scaling:** These features were tagged to work on next as they required little additional work in order to be incorporated into the models.
+
+    Minimal Preprocessing: *?*
+
+  * **Columns requiring advanced processing** We wanted to keep these features for further investigation at a later date.  While there may be opportunities to discover additional insights form these features, it would require
+
+    Advanced Features: *?*
+
+  * **Columns requiring extensive further investigation (out of scope)** We wanted to keep these features for further investigation at a later date.  While there may be opportunities to discover additional insights form these features, it would require
+
+    Out-of-Scope Features: *?*
+
+  * **Drop Columns** Finally, we designated certain columns too sparse, irrelevant for consideration, or having too much missing or corrupt data.  We eliminated these from the analysis for the time being.
+
+    Drop Features: *?*
+  ### Part 3 - Building the Model
 
   We built an SkLearn Pipeline to facilitate the rapid iteration and testing of various models and their respective parameters. We read in our processed DataFrame and tested the following models, looking for the highest **f1_score**:
   * SVM
