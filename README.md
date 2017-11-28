@@ -183,7 +183,7 @@ CommonLit delivers high-quality, free instructional materials to support literac
 
 <img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/class_size_scatter_cls5_1stu2000_ca4.png" width="500">
 
-<img src="../plots/class_size_scatter_cls5_1stu2000_ca4.png" width="500">
+<img src="/plots/class_size_scatter_cls5_1stu2000_ca4.png" width="500">
 
 ![screenshot](http://ecampusnews.eschoolmedia.com/files/2015/02/Upace.jpg)
 
