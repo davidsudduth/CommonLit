@@ -181,7 +181,7 @@ CommonLit delivers high-quality, free instructional materials to support literac
 
   In addition to the readme markdown file that communicated the work done and methodolgies implemented, I prepared a brief management report with the capstone findings.
 
-<img src="/plots/class_size_scatter_cls5_1stu2000_ca4.png" width="800">
+<center><img src="/plots/class_size_scatter_cls5_1stu2000_ca4.png" width="600"></center>
 
 ![screenshot](http://ecampusnews.eschoolmedia.com/files/2015/02/Upace.jpg)
 
