@@ -166,9 +166,14 @@ CommonLit delivers high-quality, free instructional materials to support literac
 * **Drop** remaining
 * Model **performance metrics** selected - **R^2, RMSE**
 
-* TBD - Additional Example Code
-   ```
-   ```
+* Conduct Partial Dependency Plots Looking for relationships
+
+<center>
+<img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/partial_dependence_plot.png" width="700">
+</center>
+
+<img src="/plots/partial_dependence_plot.png" width="700">
+
 * Validation and testing methodology - **sklearn model_selection train_test_split**
 * **Parameter tuning** involved in generating the model - (in process)
 
@@ -179,9 +184,94 @@ CommonLit delivers high-quality, free instructional materials to support literac
 
   ### Part 4 - Communicating the Results
 
-  In addition to the readme markdown file that communicated the work done and methodolgies implemented, I prepared a brief management report with the capstone findings.
+  In addition to the readme markdown file that communicated the work done and methodologies implemented, I prepared a brief management report with the capstone findings.  You can find below some clear relationships found in the data.
 
-<center><img src="/plots/class_size_scatter_cls5_1stu2000_ca4.png" width="600"></center>
+<br><br>
+* **Class Size and Test Scores**
+  * "Class Size" is calculated as the number of unique students per unique classroom id
+  * As you can see below, as the final test scores increase as the class size increased from 5 to ~35
+
+<center>
+<img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/class_size_scatter_cls5_1stu2000_ca4.png" width="500">
+</center>
+
+<img src="/plots/class_size_scatter_cls5_1stu2000_ca4.png" width="700">
+
+
+* What are the takeaways from this information?
+    * We are predisposed to assume that smaller class size will result in better student performance but perhaps...
+      * There is a synergistic effect between more students per class
+      * The teachers who create bigger classes are more committed to implementing the CommonLit curriculum
+
+
+
+
+<br><br>
+* **Sign-In Count and Test Scores**
+  * "Sign-In" is calculated by the total number of times the a unique student logged on to the website
+  * As you can see below, as the sign-in count increased so did the final test scores
+
+<center>
+<img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/sign-in_count_scatter_cls5_1stu2000_ca10.png" width="500">
+</center>
+
+<img src="/plots/sign-in_count_scatter_cls5_1stu2000_ca10.png" width="700">
+
+  * What are the takeaways from this information?
+      * The more often a student logs in, the more likely they are to benefit from the curriculum
+
+<br><br>
+* **Productivity and Test Scores**
+  * Student Productivity is the measure of completed assignments per week
+  * One would think that the more 'intensely' a student works, the better their final score
+
+<center>
+<img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/productivity_scatter.v2_15 assgmts_ and_within_3std.png" width="500">
+</center>
+
+<img src="/plots/productivity_scatter.v2_15 assgmts_ and_within_3std.png" width="700">
+
+  * What are the takeaways from this information?
+      * Is there something hidden that requires further information
+      * Are multiple students using the same login?
+      * Are teachers asking students to work in pairs or groups on an assignment?
+
+
+<br><br>
+* **Completed Assignments and Test Scores**
+  * Completed Assignments is the count of completed assignments per student
+  * One would think that the more 'intensely' a student works, the better their final score
+
+<center>
+<img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/completed_assignments.png" width="500">
+</center>
+
+<img src="/plots/completed_assignments.png" width="700">
+
+  * What are the takeaways from this information?
+      * High performing students tend to continue to do well
+
+
+<br><br>
+* **First Score and Test Scores**
+  * The "First Score" is calculated by taking the average of the first two test scores of a student
+  * While not an actionable item by teachers, this is a clear indicator of a student final test scores
+
+<center>
+<img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/first_score_scatter_cls5_1stu2000_ca10.png" width="500">
+</center>
+
+<img src="/plots/first_score_scatter_cls5_1stu2000_ca10.png" width="700">
+
+  * What are the takeaways from this information?
+      * High performing students tend to continue to do well and visa versa
+<br><br>
+
+
+
+
+
+
 
 ![screenshot](http://ecampusnews.eschoolmedia.com/files/2015/02/Upace.jpg)
 
