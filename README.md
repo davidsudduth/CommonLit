@@ -42,18 +42,20 @@ CommonLit delivers high-quality, free instructional materials to support literac
 *Success in the context of CommonLit's mission is the improvement of a given students reading and writing ability measured by their assignment score improvement over time.*
 
   * ##### How do we measure it?
-   * Student success is measured by **improvement over time** as calculated by the measured difference in first two assessment scores and the last two assessment scores.
+   <!-- * Student success is measured by **improvement over time** as calculated by the measured difference in first two assessment scores and the last two assessment scores. -->
+   * Student success is measured by **the average of the final two assessment scores** as the dependent variable that we are trying to predict
 
   * ##### What factors influence it?
-     * Student improvement in literacy development is a complicated and nuanced problem.  My focus was to find predictors in the data at hand.  At a high level, the analysis showed **class size**, **teachers per student**, **sign-in count**, and **student productivity** were strong influencers.
+     * Student improvement in literacy development is a complicated and nuanced problem.  My focus was to find predictors in the data at hand.  At a high level, the analysis showed **class size**, **teachers per student**, **sign-in count**, **completed assignments**, and **student productivity** were strong influencers.
 
   * ##### How can we influence it?
      * As a multitude of studies have shown, the success of a student is strongly influenced by many factors outside the classroom.  However, the focus of this study was, controlling for other factors, how can CommonLit use the tools at hand to make the most impact on a students ability to read and write.  
 
 
-  In addition to performing data munging and preprocessing of the initial dataset, I also engineered a number of features I thought would be relevant to predicting improvement in student assessment scores.  Specifically, I looked number of students per classroom id, the number of students per teacher id, the number of assignments completed by submit time as well as the time between the first assignment and last assignment.  
+  In addition to performing data munging and preprocessing of the initial dataset, I also engineered a number of features I thought would be relevant to predicting improvement in student assessment scores.  Specifically, I looked number of students per classroom id, the number of students per teacher id, the number of assignments completed by submit time (labeled productivity) as well as the time between the first assignment and last assignment (delta).  
 
-  After preliminary EDA showed that students per teacher, classroom size, and number of signs and productivity were influential in a students success, I attempted to look at school location and district information.  I wanted to control for poorly performed district/school in my analysis in an attempt to tease out more specific factors that determined improvement.  I also wanted to confirm that school location and school district played an important role in student improvement.
+  After preliminary EDA, the initial model runs showed that students per teacher, classroom size, number of sign-ins and productivity were influential in a students success.
+  <!-- I attempted to look at school location and district information.  I wanted to control for poorly performed district/school in my analysis in an attempt to tease out more specific factors that determined improvement.  I also wanted to confirm that school location and school district played an important role in student improvement. -->
 
 
   <center></center>
@@ -67,38 +69,43 @@ CommonLit delivers high-quality, free instructional materials to support literac
   * **Initial Features** First, I identified columns with null values and missing or incorrect data.  I then looked at histograms, scatter matrices, and other visualizations to get an idea of the data's distribution and possible relationships between the features.
 
     Initial Features for MVP:
-```
-['student_id', 'assignment_id', "
- "'status', 'assignment_average', 'class_roster_id', 'sign_in_count', "
- "'grade_id', 'text_id', 'level_id', 'lexile', 'common_core_category', "
- "'compltd_assigmts', 'teacher_id', 'school_nces', 'include_cfus', 'delta', "
- "'len_slug', 'class_size', 'stu_per_teacher', 'first_scores', 'submit_time', "
- "'sub_delta', 'productivity']
-```
 
-    Histogram Distribution of Assessment Scores
+```
+['student_id', 'assignment_id', 'status', 'assignment_average',  'class_roster_id', 'sign_in_count', 'grade_id', 'text_id', 'level_id', 'common_core_category', 'compltd_assigmts', 'teacher_id', 'school_nces', 'first_scores', 'submit_time', 'productivity']
+
+```
 
 
 
   * **Columns requiring minimal preprocessing - categorical one hot encoding, scaling:** These features were tagged to work on next as they required little additional work in order to be incorporated into the models.
 
-      Minimal Preprocessing: **
+      Minimal Preprocessing:
+      ```
+      'delta',
+      'lexile',
+      'len_slug',
+      'include_cfus'
+      ```
 
   * **Columns requiring more involved feature engineering** I wanted to keep these features for further investigation at a later date.  While there may be opportunities to discover additional insights form these features, it would require
 
-      Advanced Features: *?*
+      Calculated Features:
+      ```'class_size',
+         'stu_per_teacher',
+         'productivity'
+      ```
 
-  * **Columns requiring extensive further investigation (out of scope)** While there may be opportunities to discover additional insights from these features, it would require more time than was available for this project.
+  * **Columns requiring extensive further investigation (out of scope)** While there may be opportunities to discover additional insights from additional datasets and the features contained therein, it would require more time than was available for this project.
 
-      Out-of-Scope Features: *?*
 
-  * **Drop Columns** Finally, we designated certain columns too sparse, irrelevant for consideration, or having too much missing or corrupt data.  We eliminated these from the analysis.
+  * **Drop Columns** Finally, I designated certain columns too sparse, irrelevant for consideration, or having too much missing or corrupt data.  I eliminated these from the analysis.
 
-      Drop Features: *?*
+
 
   ### Part 2 - Building the Model
 
-  I built an sklearn Pipeline to facilitate the rapid iteration and testing of various models and their respective parameters. I loaded a normalized and preprocessed DataFrame split into a train-test split to feed into the following models:
+  I built an model pipeline to facilitate the rapid iteration and testing of various models and their respective parameters. I loaded a normalized and preprocessed DataFrame that was split into train / test subsets to feed into the following models:
+
     * Linear Regression
     * Random Forest Regressor
     * AdaBoost Regressor
@@ -123,8 +130,15 @@ CommonLit delivers high-quality, free instructional materials to support literac
   ```
   Final Model Features:
 
-  ['first_scores', 'sign_in_count', 'compltd_assigmts', 'class_size',
-         'stu_per_teacher', 'teacher_id', 'delta', 'grade_id', 'productivity']
+  ['first_scores',
+   'sign_in_count',
+   'compltd_assigmts',
+   'class_size',
+   'stu_per_teacher',
+   'teacher_id',
+   'delta', # time between assignments for each student
+   'grade_id',
+   'productivity']
 
   Results:
 
@@ -153,19 +167,18 @@ CommonLit delivers high-quality, free instructional materials to support literac
 
 
   MLP Neural Network Results:
-  R^2 = 0.5972
+  R^2 = 0.597
   'MLP RMSE = 0.166'
 
   ```
 
-  We decided on our **“optimal” model** by following the Process Flow below:
+  I decided on an **“optimal” model** by following the Process Flow below:
 * **Preprocessing** - calculate our **"response"** from *assessment scores*
 * Create **MVP** with initial features requiring no preprocessing
 * Add to model **features** needing only one hot encoding, scaling, other minimal preprocessing
-* Work on more involved **feature engineering**
+* Add more involved **feature engineering**
 * **Drop** remaining
 * Model **performance metrics** selected - **R^2, RMSE**
-
 * Conduct Partial Dependency Plots Looking for relationships
 
 <center>
@@ -175,7 +188,7 @@ CommonLit delivers high-quality, free instructional materials to support literac
 <img src="/plots/partial_dependence_plot.png" width="700">
 
 * Validation and testing methodology - **sklearn model_selection train_test_split**
-* **Parameter tuning** involved in generating the model - (in process)
+* **Parameter tuning** involved in generating the model
 
 
 
@@ -184,9 +197,9 @@ CommonLit delivers high-quality, free instructional materials to support literac
 
   ### Part 4 - Communicating the Results
 
-  In addition to the readme markdown file that communicated the work done and methodologies implemented, I prepared a brief management report with the capstone findings.  You can find below some clear relationships found in the data.
+  In addition to the readme markdown file that communicated the work done and methodologies implemented, I prepared a brief management report with the capstone findings.  You can find below some of the relationships found in the data.
 
-<br><br>
+
 * **Class Size and Test Scores**
   * "Class Size" is calculated as the number of unique students per unique classroom id
   * As you can see below, as the final test scores increase as the class size increased from 5 to ~35
@@ -198,8 +211,8 @@ CommonLit delivers high-quality, free instructional materials to support literac
 <img src="/plots/class_size_scatter_cls5_1stu2000_ca4.png" width="700">
 
 
-* What are the takeaways from this information?
-    * We are predisposed to assume that smaller class size will result in better student performance but perhaps...
+* What are the **takeaways** from this information?
+    * We often assume that smaller class size will result in better student performance but perhaps...
       * There is a synergistic effect between more students per class
       * The teachers who create bigger classes are more committed to implementing the CommonLit curriculum
 
@@ -217,7 +230,7 @@ CommonLit delivers high-quality, free instructional materials to support literac
 
 <img src="/plots/sign-in_count_scatter_cls5_1stu2000_ca10.png" width="700">
 
-  * What are the takeaways from this information?
+* What are the **takeaways** from this information?
       * The more often a student logs in, the more likely they are to benefit from the curriculum
 
 <br><br>
@@ -225,14 +238,15 @@ CommonLit delivers high-quality, free instructional materials to support literac
   * Student Productivity is the measure of completed assignments per week
   * One would think that the more 'intensely' a student works, the better their final score
 
-<center>
+<!-- <center>
 <img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/productivity_scatter.v2_15 assgmts_ and_within_3std.png" width="500">
-</center>
+</center> -->
 
 <img src="/plots/productivity_scatter.v2_15 assgmts_ and_within_3std.png" width="700">
 
-  * What are the takeaways from this information?
-      * Is there something hidden that requires further information
+* What are the **takeaways** from this information?
+      * Is there something hidden that requires further information or calculation?
+        * Does not take into consideration academic calender breaks, time off, etc.
       * Are multiple students using the same login?
       * Are teachers asking students to work in pairs or groups on an assignment?
 
@@ -240,16 +254,17 @@ CommonLit delivers high-quality, free instructional materials to support literac
 <br><br>
 * **Completed Assignments and Test Scores**
   * Completed Assignments is the count of completed assignments per student
-  * One would think that the more 'intensely' a student works, the better their final score
+  * It is logical to see a relationship between more assignments and higher final scores
 
-<center>
+<!-- <center>
 <img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/completed_assignments.png" width="500">
-</center>
+</center> -->
 
 <img src="/plots/completed_assignments.png" width="700">
 
-  * What are the takeaways from this information?
-      * High performing students tend to continue to do well
+* What are the **takeaways** from this information?
+    * High performing students tend to continue to do well
+    * There seems to be a strong initial correlation but a subsequent downward trend
 
 
 <br><br>
@@ -257,14 +272,15 @@ CommonLit delivers high-quality, free instructional materials to support literac
   * The "First Score" is calculated by taking the average of the first two test scores of a student
   * While not an actionable item by teachers, this is a clear indicator of a student final test scores
 
-<center>
+<!-- <center>
 <img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/first_score_scatter_cls5_1stu2000_ca10.png" width="500">
-</center>
+</center> -->
 
 <img src="/plots/first_score_scatter_cls5_1stu2000_ca10.png" width="700">
 
   * What are the takeaways from this information?
       * High performing students tend to continue to do well and visa versa
+      * It is also observable that if you have a lower first score, you will show more improvement.  However, if you have a higher initial score, you do not tend to improve
 <br><br>
 
 
@@ -279,17 +295,18 @@ CommonLit delivers high-quality, free instructional materials to support literac
 
   #### What did we learn?
 
-MongoDB was used to store the information. After the data is uploaded to the web app, the predictions, time the predictions were made, and the original data is all stored in a MongoDB database in a JSON like format.
+All in all, it is a difficult task to predict a students outcome based on limited information.
 
   #### What would we have done differently?
 
-The database is continuously updates as the web app runs. On the web app, when the ‘view predictions’ button is clicked, the web app takes the data from the MongoDB database and displays the case id, prediction, and time predicted.
+;lsadkjf;lsadkj;ldsakfj;ldsaj;ldsakfj
+;lsakjd;lsadkjsa;ldjdsa;lsadkjf;lsakjf;als;ldsaj;ldsajdsa;lfkj
 
 
 ## Recommendations & Next Steps
 
 
-* While our SVC model performed okay, we would like to improve this
+<!-- * While our SVC model performed okay, we would like to improve this
 * Additional feature engineering
 * Further Model Optimization - parameter tuning
 * Optimize Threading
@@ -299,4 +316,4 @@ The database is continuously updates as the web app runs. On the web app, when t
 * Additional feature engineering
 * Further Model Optimization
 * Optimize Threading
-* Visualization - D3
+* Visualization - D3 -->
