@@ -158,9 +158,9 @@ CommonLit delivers high-quality, free instructional materials to support literac
 
 
 #### Partial Dependency of a Gradient Boosting Regressor
-<center>
+<!-- <center>
 <img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/partial_dependence_plot.png" width="700">
-</center>
+</center> -->
 
 <img src="/plots/partial_dependence_plot.png" width="700">
 
@@ -269,18 +269,17 @@ Through the noise in the Partial dependency plot above, we can see the completed
 
   #### What did we learn?
 
-All in all, it is a difficult task to predict a students outcome based on limited information.
-
-  #### What would we have done differently?
-
-;lsadkjf;lsadkj;ldsakfj;ldsaj;ldsakfj
-;lsakjd;lsadkjsa;ldjdsa;lsadkjf;lsakjf;als;ldsaj;ldsajdsa;lfkj
+All in all, it is a difficult task to predict a students outcome based on limited information.  Some data proved to be informative and expected, more informative and unexpected, while a lot of the data was not informative at all.
 
 
 ## Recommendations & Next Steps
 
+* Additional feature engineering
+* Further Model Optimization - parameter tuning
+* Visualization - D3
+
 acknowledgments
-common lit data staff and a;laskdj;ldsaj
+common lit data staff
 sklearn, wordnet, make more technical, fewer results, reference code via link.
 
 <!-- * While our SVC model performed okay, we would like to improve this
