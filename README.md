@@ -181,9 +181,9 @@ CommonLit delivers high-quality, free instructional materials to support literac
 * Model **performance metrics** selected - **R^2, RMSE**
 * Conduct Partial Dependency Plots Looking for relationships
 
-<center>
+<!-- <center>
 <img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/partial_dependence_plot.png" width="700">
-</center>
+</center> -->
 
 <img src="/plots/partial_dependence_plot.png" width="700">
 
@@ -204,9 +204,9 @@ CommonLit delivers high-quality, free instructional materials to support literac
   * "Class Size" is calculated as the number of unique students per unique classroom id
   * As you can see below, as the final test scores increase as the class size increased from 5 to ~35
 
-<center>
+<!-- <center>
 <img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/class_size_scatter_cls5_1stu2000_ca4.png" width="500">
-</center>
+</center> -->
 
 <img src="/plots/class_size_scatter_cls5_1stu2000_ca4.png" width="700">
 
@@ -224,9 +224,9 @@ CommonLit delivers high-quality, free instructional materials to support literac
   * "Sign-In" is calculated by the total number of times the a unique student logged on to the website
   * As you can see below, as the sign-in count increased so did the final test scores
 
-<center>
+<!-- <center>
 <img src="/home/david/galvanize/2.0_dsi-immersive-boulder-g53ds/09_WEEK_Final and Projects/common_lit/plots/sign-in_count_scatter_cls5_1stu2000_ca10.png" width="500">
-</center>
+</center> -->
 
 <img src="/plots/sign-in_count_scatter_cls5_1stu2000_ca10.png" width="700">
 
